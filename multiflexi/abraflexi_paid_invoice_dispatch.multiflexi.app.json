@@ -1,0 +1,174 @@
+{
+  "$schema": "https://raw.githubusercontent.com/VitexSoftware/php-vitexsoftware-multiflexi-core/refs/heads/main/schema/application.json",
+  "schemaVersion": "3.4.0",
+  "uuid": "d5a8e1c7-3f92-4b6a-8c04-91e7b2f6a350",
+  "name": {
+    "en": "AbraFlexi Paid Invoice Dispatch",
+    "cs": "Spuštění služeb po uhrazení faktury z AbraFlexi"
+  },
+  "description": {
+    "en": "On a paid AbraFlexi invoice start the MultiFlexi run-templates of the ordered services (e.g. domain and VoIP credit), when they exist",
+    "cs": "Po uhrazení faktury v AbraFlexi spustí run-templates objednaných služeb (např. kredit domén a VoIP), pokud existují"
+  },
+  "requirements": [
+    "AbraFlexi"
+  ],
+  "tags": [
+    "AbraFlexi",
+    "Dispatch",
+    "Webhook",
+    "Event"
+  ],
+  "homepage": "https://github.com/Spoje-NET/abraflexi-paid-invoice-dispatch",
+  "ociimage": "docker.io/vitexsoftware/abraflexi-paid-invoice-dispatch",
+  "executable": "abraflexi-paid-invoice-dispatch",
+  "artifacts": [
+    {
+      "name": "dispatch_report",
+      "path": "${RESULT_FILE}",
+      "type": "file",
+      "description": {
+        "en": "JSON report of started run-templates",
+        "cs": "JSON report spuštěných run-templates"
+      }
+    }
+  ],
+  "environment": {
+    "INVOICE_ID": {
+      "type": "string",
+      "description": {
+        "en": "AbraFlexi issued invoice ID or code:CODE (EVENT_RECORD_ID is used when empty - set by the \"settled\" event rule)",
+        "cs": "ID nebo code:KÓD vydané faktury (při prázdném se použije EVENT_RECORD_ID z pravidla události \"settled\")"
+      },
+      "defval": "",
+      "required": false,
+      "category": "Behavior"
+    },
+    "ABRAFLEXI_COMPANY": {
+      "type": "string",
+      "description": {
+        "en": "AbraFlexi company code",
+        "cs": "Kód společnosti v AbraFlexi"
+      },
+      "defval": "demo_de",
+      "required": true,
+      "category": "API"
+    },
+    "ABRAFLEXI_LOGIN": {
+      "type": "string",
+      "description": {
+        "en": "AbraFlexi Login",
+        "cs": "AbraFlexi přihlášení"
+      },
+      "defval": "winstrom",
+      "required": true,
+      "category": "API"
+    },
+    "ABRAFLEXI_PASSWORD": {
+      "type": "password",
+      "description": {
+        "en": "AbraFlexi password",
+        "cs": "AbraFlexi heslo"
+      },
+      "defval": "winstrom",
+      "required": true,
+      "category": "API"
+    },
+    "ABRAFLEXI_URL": {
+      "type": "string",
+      "description": {
+        "en": "AbraFlexi Server URI",
+        "cs": "AbraFlexi Server URI"
+      },
+      "defval": "https://demo.flexibee.eu:5434",
+      "required": true,
+      "category": "API"
+    },
+    "APP_DEBUG": {
+      "type": "bool",
+      "description": {
+        "en": "Show debug messages",
+        "cs": "Zobrazovat ladící zprávy"
+      },
+      "defval": "false",
+      "required": false,
+      "category": "Behavior"
+    },
+    "RESULT_FILE": {
+      "type": "string",
+      "description": {
+        "en": "Write output json data to",
+        "cs": "Zapsat výstupní json do"
+      },
+      "defval": "abraflexi_paid_invoice_dispatch.json",
+      "required": false,
+      "category": "Other"
+    },
+    "EASE_LOGGER": {
+      "type": "string",
+      "description": {
+        "en": "Logger type",
+        "cs": "Typ logování"
+      },
+      "defval": "console|syslog",
+      "required": false,
+      "category": "Other"
+    },
+    "PRODUCT_APPS": {
+      "type": "string",
+      "description": {
+        "en": "JSON map product code => application executable or run-template name",
+        "cs": "JSON mapa kód produktu => spustitelný soubor aplikace nebo název run-template"
+      },
+      "defval": "{\"KREDIT_DOMENA\":\"abraflexi-domain-credit\",\"KREDIT_VOIP\":\"abraflexi-voip-credit\"}",
+      "required": false,
+      "category": "Behavior"
+    },
+    "DISPATCH_COMPANY_ID": {
+      "type": "string",
+      "description": {
+        "en": "Only consider run-templates of this MultiFlexi company ID",
+        "cs": "Uvažovat jen run-templates této společnosti MultiFlexi (ID)"
+      },
+      "defval": "",
+      "required": false,
+      "category": "Behavior"
+    },
+    "DISPATCH_DRYRUN": {
+      "type": "bool",
+      "description": {
+        "en": "Do not schedule anything, only report",
+        "cs": "Nic neplánovat, jen vypsat do reportu"
+      },
+      "defval": "false",
+      "required": false,
+      "category": "Behavior"
+    }
+  },
+  "exitCodes": {
+    "0": {
+      "description": {
+        "en": "Run-templates started or nothing to do",
+        "cs": "Run-templates spuštěny nebo není co dělat"
+      },
+      "severity": "success",
+      "retry": false
+    },
+    "1": {
+      "description": {
+        "en": "Scheduling failed or run-template is ambiguous (see report)",
+        "cs": "Plánování selhalo nebo je run-template nejednoznačná (viz report)"
+      },
+      "severity": "error",
+      "retry": false
+    },
+    "2": {
+      "description": {
+        "en": "Missing INVOICE_ID",
+        "cs": "Chybí INVOICE_ID"
+      },
+      "severity": "error",
+      "retry": false
+    }
+  }
+}

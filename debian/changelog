@@ -1,0 +1,5 @@
+abraflexi-paid-invoice-dispatch (0.1.0) stable; urgency=medium
+
+  * Initial release: start MultiFlexi run-templates of ordered services when an AbraFlexi invoice is paid (event settled)
+
+ -- Vítězslav Dvořák <info@vitexsoftware.cz>  Thu, 08 Oct 2026 16:30:00 +0200

@@ -1,0 +1,4 @@
+bin/*                                                  usr/bin/
+src/abraflexi-paid-invoice-dispatch.php                        usr/share/abraflexi-paid-invoice-dispatch/
+src/SpojeNet/AbraFlexiPaidInvoiceDispatch/*                   usr/lib/php/abraflexi-paid-invoice-dispatch/
+debian/autoload.php                                    usr/lib/php/abraflexi-paid-invoice-dispatch/

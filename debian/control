@@ -1,0 +1,25 @@
+Source: abraflexi-paid-invoice-dispatch
+Section: web
+Priority: optional
+Maintainer: Vítězslav Dvořák <info@vitexsoftware.cz>
+Build-Depends: debhelper-compat (= 13), jq, moreutils, pkg-php-tools
+Standards-Version: 4.5.1
+Homepage: https://github.com/Spoje-NET/abraflexi-paid-invoice-dispatch
+Rules-Requires-Root: no
+
+Package: abraflexi-paid-invoice-dispatch
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}, php-cli, php-spojenet-abraflexi, php-vitexsoftware-ease-core
+Description: Start MultiFlexi run-templates for services on a paid AbraFlexi invoice
+ Reads a paid AbraFlexi issued invoice and schedules the MultiFlexi
+ run-templates of the ordered services (e.g. abraflexi-domain-credit and
+ abraflexi-voip-credit), when such run-templates exist.
+
+Package: multiflexi-abraflexi-paid-invoice-dispatch
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}, multiflexi-cli
+Pre-Depends: abraflexi-paid-invoice-dispatch
+Description: Add abraflexi-paid-invoice-dispatch into MultiFlexi
+ Application definition for MultiFlexi.

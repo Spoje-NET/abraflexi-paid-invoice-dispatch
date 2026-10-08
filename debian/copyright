@@ -1,0 +1,7 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: abraflexi-paid-invoice-dispatch
+Source: https://github.com/Spoje-NET/abraflexi-paid-invoice-dispatch
+
+Files: *
+Copyright: 2026 Vítězslav Dvořák <info@vitexsoftware.cz>
+License: MIT

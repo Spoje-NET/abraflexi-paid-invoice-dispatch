@@ -1,0 +1,2 @@
+#!/bin/sh
+php -f /usr/share/abraflexi-paid-invoice-dispatch/abraflexi-paid-invoice-dispatch.php -- "$@"

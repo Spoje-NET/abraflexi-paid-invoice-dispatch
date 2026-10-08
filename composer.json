@@ -1,0 +1,25 @@
+{
+    "name": "spojenet/abraflexi-paid-invoice-dispatch",
+    "description": "Start MultiFlexi run-templates for services ordered on a paid AbraFlexi invoice",
+    "license": "MIT",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Vítězslav Dvořák",
+            "email": "vitezslav.dvorak@spojenet.cz"
+        }
+    ],
+    "require": {
+        "spojenet/flexibee": "^3.7",
+        "vitexsoftware/ease-core": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    },
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "SpojeNet\\AbraFlexiPaidInvoiceDispatch\\": "src/SpojeNet/AbraFlexiPaidInvoiceDispatch"
+        }
+    }
+}

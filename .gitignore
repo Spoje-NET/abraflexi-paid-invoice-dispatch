@@ -1,0 +1,9 @@
+/vendor/
+/.env
+.phpunit.result.cache
+/debian/abraflexi-paid-invoice-dispatch/
+/debian/multiflexi-abraflexi-paid-invoice-dispatch/
+/debian/*.debhelper.log
+/debian/*.substvars
+/debian/files
+/debian/debhelper-build-stamp
